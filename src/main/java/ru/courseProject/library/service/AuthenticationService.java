@@ -7,7 +7,6 @@ import ru.courseProject.library.model.LogPas;
 import ru.courseProject.library.model.Reader;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -34,13 +33,14 @@ public class AuthenticationService {
         readCard += reader.getId().toString();
 
         reader.setReadCard(readCard);
-        LogPas logPas = new LogPas(request.get("login"), request.get("password"));
+        LogPas logPas = new LogPas(request.get("login"), request.get("password"), reader.getId());
 
         if (authenticationMapper.insertReader(reader) > 0 && authenticationMapper.insertLogPas(logPas) > 0) {
             response.put("created", Boolean.TRUE);
         } else {
             response.put("created", Boolean.FALSE);
         }
+
         return response;
     }
 }

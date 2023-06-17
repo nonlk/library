@@ -1,15 +1,13 @@
 package ru.courseProject.library.maper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import ru.courseProject.library.model.LogPas;
 import ru.courseProject.library.model.Reader;
 
 import java.util.List;
 import java.util.Optional;
 
+@Mapper
 public interface AuthenticationMapper {
 
     @Select("SELECT password FROM readers_log_pas WHERE login = #{log}")
@@ -19,12 +17,12 @@ public interface AuthenticationMapper {
     @Select("SELECT COUNT(*) FROM readers")
     Integer countReaders();
 
-    @Insert("INSERT INTO readers_log_pas(login, reader_id password) " +
-            " VALUES (#{login}, #{reader_id} #{password})")
+    @Insert("INSERT INTO readers_log_pas(login, reader_id, password)" +
+            " VALUES (#{login}, #{readerId}, #{password})")
     int insertLogPas(LogPas logPas);
 
     @Insert("INSERT INTO readers(first_name, second_name, last_name, read_card)" +
-            " VALUES (#{first_name}, #{second_name}, #{last_name), #{read_card})")
+            " VALUES (#{firstName}, #{secondName}, #{lastName}, #{readCard})")
     int insertReader(Reader reader);
 
     @Select("SELECT reader_id FROM readers_log_pas" +
