@@ -1,6 +1,6 @@
 package ru.courseProject.library.model.response;
 
-import ru.courseProject.library.model.LibrError;
+import ru.courseProject.library.model.enums.LibrError;
 import ru.courseProject.library.model.enums.ErrorCode;
 
 import java.io.Serializable;

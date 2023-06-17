@@ -1,6 +1,4 @@
-package ru.courseProject.library.model;
-
-import ru.courseProject.library.model.enums.ErrorCode;
+package ru.courseProject.library.model.enums;
 
 import java.io.Serializable;
 
