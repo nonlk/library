@@ -8,6 +8,8 @@ INSERT INTO books
 VALUES(4, 'Мертвые души', 'Н.В. Гоголь', 45) ON CONFLICT DO NOTHING;
 INSERT INTO books
 VALUES(5, 'Кому на руси жить хорошо', 'Н.А. Некрасов', 18) ON CONFLICT DO NOTHING;
+INSERT INTO books
+VALUES(6, 'Хорошие жены', 'Л.М. Олкотт', 17) ON CONFLICT DO NOTHING;
 
 
 

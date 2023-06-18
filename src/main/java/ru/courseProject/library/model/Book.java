@@ -3,19 +3,19 @@ package ru.courseProject.library.model;
 public class Book {
 
     private Integer id;
-    private String name;
+    private String bookName;
     private String authorName;
     private Integer qty;
 
-    public Book(Integer id, String name, String authorName, Integer qty) {
+    public Book(Integer id, String bookName, String authorName, Integer qty) {
         this.id = id;
-        this.name = name;
+        this.bookName = bookName;
         this.authorName = authorName;
         this.qty = qty;
     }
 
-    public Book(String name, String authorName, Integer qty) {
-        this.name = name;
+    public Book(String bookName, String authorName, Integer qty) {
+        this.bookName = bookName;
         this.authorName = authorName;
         this.qty = qty;
     }
@@ -31,12 +31,12 @@ public class Book {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public String getAuthorName() {

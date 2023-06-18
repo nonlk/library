@@ -12,9 +12,9 @@ import java.util.Map;
 @RequestMapping("/api/authentication")
 public class AuthenticationController {
 
-    @Autowired
     private AuthenticationService authenticationService;
 
+    @Autowired
     public AuthenticationController (AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
