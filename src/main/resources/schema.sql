@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS readers_log_pas
 (
     login VARCHAR(50) NOT NULL PRIMARY KEY,
     reader_id INTEGER NOT NULL,
-    password VARCHAR(255) NOT NULL
+    pass VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS readers
@@ -30,3 +30,4 @@ CREATE TABLE IF NOT EXISTS reservation
     reserv_date VARCHAR(10) NOT NULL,
     reserv_time VARCHAR(5) NOT NULL
 );
+

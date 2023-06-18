@@ -4,21 +4,19 @@ import org.apache.ibatis.annotations.*;
 import ru.courseProject.library.model.LogPas;
 import ru.courseProject.library.model.Reader;
 
-import java.util.List;
-import java.util.Optional;
 
 @Mapper
 public interface AuthenticationMapper {
 
-    @Select("SELECT password FROM readers_log_pas WHERE login = #{log}")
-    @Result(property = "password", column = "password")
-    Optional<String> findPasByLogin(String log);
+    @Select("SELECT pass FROM readers_log_pas WHERE login = #{log}")
+    @Result(property = "pass", column = "pass")
+    String findPasByLogin(String log);
 
     @Select("SELECT COUNT(*) FROM readers")
     Integer countReaders();
 
-    @Insert("INSERT INTO readers_log_pas(login, reader_id, password)" +
-            " VALUES (#{login}, #{readerId}, #{password})")
+    @Insert("INSERT INTO readers_log_pas(login, reader_id, pass)" +
+            " VALUES (#{login}, #{readerId}, #{pass})")
     int insertLogPas(LogPas logPas);
 
     @Insert("INSERT INTO readers(first_name, second_name, last_name, read_card)" +
@@ -26,26 +24,13 @@ public interface AuthenticationMapper {
     int insertReader(Reader reader);
 
     @Select("SELECT reader_id FROM readers_log_pas" +
-            " WHERE login = #{log} AND password = #{pass}")
+            " WHERE login = #{log} AND pass = #{pass}")
     @Result(property = "reader_id", column = "reader_id")
     Integer findReaderIdByLogAndPas(String log, String pass);
 
     @Select("SELECT CONCAT(first_name, ' ', second_name, ' ', last_name)" +
-            " FROM readers rs JOIN readers_log_pas rslp " +
-            "WHERE rs.id = rslp.reader_id AND rs.id = #{reader_id} ")
-    @Results({
-            @Result(property = "first_name", column = "first_name"),
-            @Result(property = "second_name", column = "second_name"),
-            @Result(property = "last_name", column = "last_name")
-    })
+            " FROM readers " +
+            "WHERE id = #{reader_id} ")
+    @Result(property = "concat", column = "concat")
     String findFullNameByReaderId(Integer reader_id);
-
-    @Select("SELECT * FROM readers_log_pas")
-    @Results({
-            @Result(property = "login", column = "login"),
-            @Result(property = "reader_id", column = "reader_id"),
-            @Result(property = "password", column = "password")
-    })
-    List<LogPas> findAllLogPas();
-
 }

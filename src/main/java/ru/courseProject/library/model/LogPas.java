@@ -3,21 +3,21 @@ package ru.courseProject.library.model;
 public class LogPas {
 
     private String login;
-    private String password;
+    private String pass;
     private Integer readerId;
 
     public LogPas() {
     }
 
-    public LogPas(String login, String password, Integer readerId) {
+    public LogPas(String login, String pass, Integer readerId) {
         this.login = login;
-        this.password = password;
+        this.pass = pass;
         this.readerId = readerId;
     }
 
-    public LogPas(String login, String password) {
+    public LogPas(String login, String pass) {
         this.login = login;
-        this.password = password;
+        this.pass = pass;
     }
 
     public String getLogin() {
@@ -28,12 +28,12 @@ public class LogPas {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPass() {
+        return pass;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public Integer getReaderId() {

@@ -15,13 +15,26 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    public AuthenticationController (AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
     @RequestMapping(value = "registration", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> registration(@RequestBody Map<String, String> request) {
-        Map<String, Boolean> response = authenticationService.registration(request);
-        if (response.get("created") == Boolean.TRUE) {
+        if (authenticationService.registration(request).get("created") == "CREATED")
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }
+        else if (authenticationService.registration(request).get("created") == "FAIL_LOGIN")
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @RequestMapping(value = "authorisation", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<String> authorisation(@RequestParam String login,
+                                                @RequestParam String pass) {
+        return authenticationService.loginCheck(login, pass).get("authorisation") == "FALSE" ?
+                new ResponseEntity<>(HttpStatus.NOT_MODIFIED) :
+                new ResponseEntity<>("Добро пожаловать, " +
+                        authenticationService.loginCheck(login, pass).get("authorisation") + "!",
+                        HttpStatus.OK);
+    }
 }
